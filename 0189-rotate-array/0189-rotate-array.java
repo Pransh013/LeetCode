@@ -10,14 +10,13 @@ class Solution {
         
     }
     public static void revArray(int[] arr, int i, int j) {
-        int start = i; int end = j;
         
-        while(start<end) {
-            int temp = arr[start];
-            arr[start] = arr[end];
-            arr[end] = temp;
-            start++;
-            end--;
+        while(i<j) {
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+            i++;
+            j--;
         }
     }
 }
