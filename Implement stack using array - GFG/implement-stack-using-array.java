@@ -50,15 +50,11 @@ class GfG {
 
 class MyStack
 {
-    int top;
+    
 	int arr[] = new int[1000];
 	int n = arr.length;
+	int top = n-1;
 
-    MyStack()
-	{
-		top = n-1;           //constructor
-	}
-	
 	//Function to push an integer into the stack.
     void push(int a)
 	{
