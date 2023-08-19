@@ -51,25 +51,20 @@ class GfG {
 class MyStack
 {
     
-	int arr[] = new int[1000];
-	int n = arr.length;
-	int top = n-1;
+	ArrayList<Integer> arr = new ArrayList<>();
 
 	//Function to push an integer into the stack.
-    void push(int a)
+    void push(int val)
 	{
-	    if(top == -1) return;       //Stack overflow
 	    
-	    arr[top] = a;
-	    top--;
+	    arr.add(val);          //Insert in the last of arraylist
 	} 
 	
     //Function to remove an item from top of the stack.
 	int pop()
 	{
-	    if(top == n-1) return -1;  //Stack underflow
+	    if(arr.size() == 0) return -1;   //Stack underflow
 	    
-        top++;
-        return arr[top];
+        return arr.remove(arr.size() - 1);
 	}
 }
