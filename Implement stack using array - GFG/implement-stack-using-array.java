@@ -56,13 +56,13 @@ class MyStack
 
     MyStack()
 	{
-		top = n-1;
+		top = n-1;           //constructor
 	}
 	
 	//Function to push an integer into the stack.
     void push(int a)
 	{
-	    if(top == -1) return;
+	    if(top == -1) return;       //Stack overflow
 	    
 	    arr[top] = a;
 	    top--;
@@ -71,7 +71,8 @@ class MyStack
     //Function to remove an item from top of the stack.
 	int pop()
 	{
-	    if(top == n-1) return -1;
+	    if(top == n-1) return -1;  //Stack underflow
+	    
         top++;
         return arr[top];
 	}
