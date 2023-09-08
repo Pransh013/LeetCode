@@ -15,7 +15,7 @@ class Solution {
             }
             i++;
         }
-        maxLen = Math.max(maxLen, currLen);
-        return maxLen;
+        return Math.max(maxLen, currLen);
+        
     }
 }
