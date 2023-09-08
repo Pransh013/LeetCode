@@ -3,8 +3,7 @@ class Solution {
         int ans = 0;
         
         for(String str : arr) {
-            if(str.contains("+")) ans++;
-            else ans--;
+            ans += (44 - str.charAt(1));
         }
         return ans;
     }
