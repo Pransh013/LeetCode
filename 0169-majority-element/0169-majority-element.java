@@ -10,7 +10,7 @@ class Solution {
                     count++;
             }
              
-            if(count>=(n+1)/2){
+            if(count > n/2){
                 ans = arr[i];
                 break;
             }
