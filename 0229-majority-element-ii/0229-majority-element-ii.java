@@ -5,13 +5,11 @@ class Solution {
         
         int n = arr.length;
         
-        for(int i=0; i<n; i++) {
-            if(hm.containsKey(arr[i])) {
-                int of = hm.get(arr[i]);
-                int nf = of + 1;
-                hm.put(arr[i], nf);
+        for(int ele : arr) {
+            if(hm.containsKey(ele)) {
+                hm.put(ele, hm.get(ele) + 1);
             } else {
-                hm.put(arr[i], 1);
+                hm.put(ele, 1);
             }
         }
         
