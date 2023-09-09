@@ -2,17 +2,18 @@ class Solution {
     public int majorityElement(int[] arr) {
         int n = arr.length;
     
-        int ans = Integer.MIN_VALUE;
-        for(int i = 0;i<n;i++){
-            int count = 1;
-            for(int j = 1;j<n;j++){
-                if(arr[i]==arr[j])
-                    count++;
+        int ans = arr[0];
+        int cnt = 1;
+        for(int i = 1; i<n; i++){
+            if(arr[i] == ans) {
+                cnt++;
+            } else {
+                cnt--;
             }
-             
-            if(count > n/2){
+            
+            if(cnt == 0) {
                 ans = arr[i];
-                break;
+                cnt = 1;
             }
         }
         return ans;
