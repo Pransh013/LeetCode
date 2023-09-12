@@ -8,11 +8,9 @@ class Solution {
         for(int i=0; i<s.length(); i++) {
             for(int j=i+1; j<=s.length(); j++) {
                 String t = s.substring(i, j);
-                if(isPalindrome(t)) {
-                    if(t.length() > maxLen) {
-                        maxLen = t.length();
-                        ans = t;
-                    }
+                if(t.length() > maxLen && isPalindrome(t)) {
+                    maxLen = t.length();
+                    ans = t;
                 }
             }
         }
