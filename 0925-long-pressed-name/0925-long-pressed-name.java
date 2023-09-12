@@ -15,7 +15,7 @@ class Solution {
                 i++;
                 j++;
             } else {
-                if(j == 0 || s2.charAt(j) == s2.charAt(j-1))
+                if(s2.charAt(j) == s2.charAt(j-1))
                     j++;
                 else 
                     return false;
