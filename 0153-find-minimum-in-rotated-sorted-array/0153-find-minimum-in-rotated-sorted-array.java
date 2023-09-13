@@ -10,6 +10,8 @@ class Solution {
             if(nums[m] <= ans)
                 ans = nums[m]; 
             
+//          answer will never lie in sorted half except for n rotated.   
+            
 //             check if right half is sorted
             if(nums[h] >= nums[m])
                 h = m - 1;
