@@ -1,9 +1,6 @@
 class Solution {
     public String reverseOnlyLetters(String str) {
         
-        if(str.isEmpty())
-            return str;
-        
         char[] temp = str.toCharArray();
         
         int n = temp.length;
@@ -24,9 +21,7 @@ class Solution {
                 e--;
             }
         }
-        StringBuilder sb = new StringBuilder();
-        sb.append(temp);
-        String ans = sb.toString();
-        return ans;
+        
+        return String.valueOf(temp);
     }
 }
