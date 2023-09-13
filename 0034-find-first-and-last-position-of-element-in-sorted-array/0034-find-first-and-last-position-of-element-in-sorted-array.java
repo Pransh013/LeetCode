@@ -1,25 +1,22 @@
 class Solution {
     public int[] searchRange(int[] nums, int target) {
         int[] ans = new int[2];
-        Arrays.fill(ans, -1);
         
         int n = nums.length;
-        int start = n, end = n;
+        int start = -1, end = -1;
         
         for(int i=0; i<n; i++) {
             if(nums[i] == target) {
-                if(i < start)
+                if(start == -1)
                     start = i;
                 
                 end = i;
             }
         }
-        if(start == n)
-            return ans;
-        else {
-            ans[0] = start;
-            ans[1] = end;
-        }
+        
+        ans[0] = start;
+        ans[1] = end;
+        
         return ans;
     }
 }
