@@ -4,20 +4,16 @@ class Solution {
         int totalEnergy = 0;
         for(int i=0; i<energy.length; i++) {
             totalEnergy += energy[i];
+            if(initialExp <= experience[i]) {
+                sum += experience[i] - initialExp + 1;
+                initialExp = experience[i] + 1;  
+            }
+            initialExp += experience[i];
         }
         
         if(initialEnergy <= totalEnergy)
-            sum = totalEnergy - initialEnergy + 1;
+            sum += totalEnergy - initialEnergy + 1;
         
-        for(int i=0; i<experience.length; i++) {
-            if(initialExp > experience[i]) {
-                initialExp += experience[i];
-            } else {
-                sum += experience[i] - initialExp + 1;
-                initialExp += experience[i] - initialExp + 1;
-                i--;
-            }
-        }
         return sum;
     }
 }
