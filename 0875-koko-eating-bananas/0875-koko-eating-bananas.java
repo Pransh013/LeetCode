@@ -10,17 +10,15 @@ class Solution {
         while(low <= high) {
             int mid = low + ((high - low) / 2);
             
-            long sum = 0;
+            int sum = 0;
             for(int i=0; i<n; i++) {
-                if(piles[i] % mid == 0)
-                    sum += piles[i] / mid;
-                else if(piles[i] < mid)
-                    sum += 1;
-                else
-                    sum += (piles[i] / mid) + 1;
+                int time = piles[i] / mid;
+                sum += time;
+                
+                if(piles[i] % mid != 0)
+                    sum ++;
             }
-            // System.out.println(sum);
-            // System.out.println(mid);
+            
             if(sum <= h) {
                 res = mid;
                 high = mid - 1;
