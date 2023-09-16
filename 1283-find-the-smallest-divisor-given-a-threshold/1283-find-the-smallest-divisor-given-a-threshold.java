@@ -19,7 +19,10 @@ class Solution {
     public boolean isPossible(int[] nums, int k, int mid) {
         int sum = 0;
         for(int val : nums) {
-            sum += Math.ceil((double)val / mid);
+            sum += val / mid;   
+            if(val % mid != 0)
+                sum ++;
+            
             if(sum > k) return false;
         }
         return true;
