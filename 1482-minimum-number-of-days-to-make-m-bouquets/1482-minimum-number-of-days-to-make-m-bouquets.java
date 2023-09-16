@@ -3,7 +3,7 @@ class Solution {
         int n = bloomDay.length;
         if((long)m * k > n) return -1;
         
-        int low = 0, high = 0, res = -1;
+        int low = 0, high = 0;
         for(int i : bloomDay) {
             low = Math.min(low, i);
             high = Math.max(high, i);
@@ -11,14 +11,12 @@ class Solution {
         
         while(low <= high) {
             int mid = low + ((high - low) / 2);
-            if(noOfFlowers(bloomDay, mid, m, k)) {
-                res = mid;
+            if(noOfFlowers(bloomDay, mid, m, k)) 
                 high = mid - 1;
-            }
             else
                 low = mid + 1;
         }
-        return res;
+        return low;
     }
     public boolean noOfFlowers(int[] arr, int mid, int m, int k) {
         int cnt = 0;
@@ -30,6 +28,9 @@ class Solution {
                 sum += cnt / k;
                 cnt = 0;
             }
+            
+            if(sum >= m)
+                return true;
         }
         sum += cnt / k;
         return sum >= m;
