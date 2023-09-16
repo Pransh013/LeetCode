@@ -15,19 +15,13 @@ class Solution {
             }
             arr[idx++] = ans + 1;
         }
-        int ans[] = new int[k];
-        for(int i = 0; i < k; i++){
-            int min = Integer.MAX_VALUE;
-            int minIdx = 0;
-            for(int j = 0; j < arr.length; j++){
-                if(arr[j] < min){
-                    min = arr[j];
-                    minIdx = j;
-                }
-            }
-            ans[i] = minIdx;
-            arr[minIdx] = Integer.MAX_VALUE;
-        }
-        return ans;
+        Integer[] indices = new Integer[arr.length];
+        for (int i = 0; i < indices.length; i++)
+            indices[i] = i;
+        Arrays.sort(indices, (a, b) -> Integer.compare(arr[a], arr[b]));
+        int[] res = new int[k];
+        for(int i=0; i<k; i++)
+            res[i] = indices[i];
+        return res;
     }
 }
