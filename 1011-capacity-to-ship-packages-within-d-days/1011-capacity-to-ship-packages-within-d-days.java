@@ -17,20 +17,16 @@ class Solution {
         return low;
     }
     public boolean minCapacity(int[] weights, int days, int mid) {
-        int cnt = 0;
-        int temp = mid;
-        for(int i=0; i<weights.length;) {
-            if(temp - weights[i] >= 0) {
-                temp -= weights[i];
-                i++;
+        int load = 0, noOfDays = 1;
+        for(int i=0; i<weights.length; i++) {
+            if(load + weights[i] > mid) {
+                noOfDays++;
+                if(noOfDays > days) return false;
+                load = weights[i];
             } else {
-                cnt++;
-                temp = mid;
-                if(cnt >= days)
-                    return false;
+                load += weights[i];
             }
         }
-        cnt++;
-        return cnt <= days;
+        return noOfDays <= days;
     }
 }
