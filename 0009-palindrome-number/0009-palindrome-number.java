@@ -1,23 +1,16 @@
 class Solution {
     public boolean isPalindrome(int n) {
-        if(n < 0) 
-            return false;
         
-        long y = 0;
-        long temp = n;
-        while(temp != 0){
-            long dig = temp % 10;
-            y +=dig;
-            y *= 10;
+        if(n == 0) return true;
+        if(n < 0 || n % 10 == 0) return false;
+        
+        int rev = 0;
+        int temp = n;
+        while(temp > 0){
+            int dig = temp % 10;
+            rev = rev*10 + dig;
             temp /= 10;
         }
-        
-        y /= 10;
-        
-        if(n == y)
-            return true;
-        else
-            return false;
-        
+        return n == rev;
     }
 }
