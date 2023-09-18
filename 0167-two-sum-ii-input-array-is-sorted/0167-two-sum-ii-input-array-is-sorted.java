@@ -1,16 +1,13 @@
 class Solution {
     public int[] twoSum(int[] arr, int target) {
         
-        int i = 0, j = arr.length - 1;
-        while(i < j) {
-            int sum = arr[i] + arr[j];
-            if(sum == target)
-                return new int[]{i+1, j+1};
-            
-            if(sum < target)
-                i++;
+        HashMap<Integer, Integer> hm = new HashMap<>();
+        
+        for(int i=0; i<arr.length; i++) {
+            if(hm.containsKey(target - arr[i]))
+                return new int[]{hm.get(target-arr[i]) + 1, i+1};
             else
-                j--;
+                hm.put(arr[i], i);
         }
         return new int[0];
     }
