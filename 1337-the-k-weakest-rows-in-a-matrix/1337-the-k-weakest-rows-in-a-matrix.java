@@ -15,10 +15,13 @@ class Solution {
             }
             arr[idx++] = ans + 1;
         }
+        
         Integer[] indices = new Integer[arr.length];
         for (int i = 0; i < indices.length; i++)
             indices[i] = i;
-        Arrays.sort(indices, (a, b) -> Integer.compare(arr[a], arr[b]));
+    
+        Arrays.sort(indices, (a, b) -> (arr[a] - arr[b]));         // Can also use Integer.compare(arr[a], arr[b])
+
         int[] res = new int[k];
         for(int i=0; i<k; i++)
             res[i] = indices[i];
