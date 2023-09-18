@@ -5,12 +5,12 @@ class Solution {
         if(n < 0 || n % 10 == 0) return false;
         
         int rev = 0;
-        int temp = n;
-        while(temp > 0){
-            int dig = temp % 10;
+        
+        while(n > rev){
+            int dig = n % 10;
             rev = rev*10 + dig;
-            temp /= 10;
+            n /= 10;
         }
-        return n == rev;
+        return (n == rev || n == rev / 10);
     }
 }
