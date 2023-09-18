@@ -24,7 +24,7 @@ class Solution {
             } else {
                 cnt++;
                 temp = mid;
-                if(cnt > days)
+                if(cnt >= days)
                     return false;
             }
         }
