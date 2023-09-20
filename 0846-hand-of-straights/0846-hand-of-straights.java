@@ -3,23 +3,25 @@ class Solution {
         
         if(hand.length % groupSize != 0) return false;
         
-        HashMap<Integer, Integer> hm = new HashMap<>();
+        TreeMap<Integer, Integer> tm = new TreeMap();
         
         for(int val : hand) {
-            hm.put(val, hm.getOrDefault(val, 0) + 1);
+            if(tm.containsKey(val)) {
+                tm.replace(val, tm.get(val) + 1);
+            } else
+                tm.put(val, 1);
         }
         
-        Arrays.sort(hand);
+        while(tm.size() > 0) {
+            int curr = tm.firstKey();
         
-        for(int val : hand) {
-            if(hm.get(val) > 0) {
-                for(int i=0; i<groupSize; i++) {
-                    int num = val + i;
-                    
-                    if(hm.getOrDefault(num, 0) <= 0) return false;
-                    
-                    hm.put(num, hm.get(num) - 1);
-                }
+            for(int i=curr; i<curr + groupSize; i++) {
+                if(!tm.containsKey(i)) return false;
+                int cnt = tm.get(i);
+                if(cnt == 1) 
+                    tm.remove(i);
+                else
+                    tm.replace(i, tm.get(i) - 1);
             }
         }
         
