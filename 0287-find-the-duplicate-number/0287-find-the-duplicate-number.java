@@ -1,17 +1,17 @@
 class Solution {
     public int findDuplicate(int[] nums) {
-        int n = nums.length;
-        for(int val : nums) {
-            nums[val % n] += n;
-        }
         
-        int max = -1, maxIdx = -1;
-        for(int i=0; i<n; i++) {
-            if(nums[i] > max) {
-                max = nums[i];
-                maxIdx = i;
-            }
+        int slow = 0, fast = 0;
+        do {
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        } while(slow != fast);
+        
+        slow = 0;
+        while(slow != fast) {
+            slow = nums[slow];
+            fast = nums[fast];
         }
-        return maxIdx;
+        return slow;
     }
 }
