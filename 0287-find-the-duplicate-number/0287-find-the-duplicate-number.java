@@ -1,13 +1,17 @@
 class Solution {
     public int findDuplicate(int[] nums) {
         int n = nums.length;
-        
         for(int val : nums) {
-            if(nums[Math.abs(val)] < 0)
-                return Math.abs(val);
-            
-            nums[Math.abs(val)] = (-1) * nums[Math.abs(val)];
+            nums[val % n] += n;
         }
-        return -1;
+        
+        int max = -1, maxIdx = -1;
+        for(int i=0; i<n; i++) {
+            if(nums[i] > max) {
+                max = nums[i];
+                maxIdx = i;
+            }
+        }
+        return maxIdx;
     }
 }
