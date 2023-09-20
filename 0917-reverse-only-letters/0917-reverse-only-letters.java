@@ -1,19 +1,19 @@
 class Solution {
     public String reverseOnlyLetters(String S) {
-        StringBuilder ans = new StringBuilder();
-        int j = S.length() - 1;
-        for (int i = 0; i < S.length(); ++i) {
-            if (Character.isLetter(S.charAt(i))) {
-                while (!Character.isLetter(S.charAt(j)))
-                    j--;
-                System.out.println(S.charAt(j));
-                ans.append(S.charAt(j--));
-            } else {
-                System.out.println(S.charAt(i));
-                ans.append(S.charAt(i));
-            }
-        }
+        Stack<Character> st = new Stack<>();
+        
+        for (char ch : S.toCharArray())
+            if (Character.isLetter(ch))
+               st.push(ch);
 
-        return ans.toString();
+        StringBuilder sb = new StringBuilder();
+        
+        for(char ch : S.toCharArray()) {
+            if (Character.isLetter(ch))
+               sb.append(st.pop());
+            else
+                sb.append(ch);
+        }
+        return sb.toString();
     }
 }
