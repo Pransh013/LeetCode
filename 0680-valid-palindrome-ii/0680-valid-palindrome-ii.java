@@ -4,30 +4,20 @@ class Solution {
         int i = 0, j = s.length() - 1, cnt = 0;
         
         while(i <= j) {
-           if(s.charAt(i) == s.charAt(j)) {
-               i++;
-               j--;
-           } else {
-               cnt++;
-               j--;                                               // discarding character from end
-           }
+            if(s.charAt(i) != s.charAt(j))
+                return(isPalindrome(s, i, j - 1) || isPalindrome(s, i + 1, j));
+            i++;
+            j--;
         }
-        if(cnt == 1 || cnt == 0) return true;
         
-        cnt = 0;
-        i = 0;
-        j = s.length() - 1;
+        return true;
+    }
+    
+    private boolean isPalindrome(String s, int i, int j) {
         while(i <= j) {
-           if(s.charAt(i) == s.charAt(j)) {
-               i++;
-               j--;
-           } else {
-               cnt++;
-               i++;                                             // discarding character from start
-           }
+            if(s.charAt(i++) != s.charAt(j--))
+                return false;
         }
-        if(cnt == 1) return true;
-        
-        return false;
+        return true;
     }
 }
