@@ -14,9 +14,10 @@ class Solution {
             
         int[] res = new int[n - k + 1];
         
+        int j = 0;
         for(int i = 0; i < n - k + 1; i++) {
-            int j = i;
             
+            if(j < i) j = i;
             while(nextGreater[j] < i + k) {
                 j = nextGreater[j];
             }
