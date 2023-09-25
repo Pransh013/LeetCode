@@ -3,18 +3,18 @@ class Solution {
         int n = s.length();
         int m = t.length();
         if(n == 0) return t.charAt(0);
-        char[] S = s.toCharArray();
-        char[] T = t.toCharArray();
-        
-        Arrays.sort(S);
-        Arrays.sort(T);
-        
+
+        int[] arr = new int[26];
+        arr[t.charAt(m - 1) - 'a']++;
         int idx = 0;
         while(idx < n) {
-            if(S[idx] != T[idx])
-                return T[idx];
+            arr[t.charAt(idx) - 'a']++;
+            arr[s.charAt(idx) - 'a']--;
             idx++;
         }
-        return T[m - 1];
+        for(int i = 0; i < 26; i++)
+            if(arr[i] != 0)
+                return (char)(i + 'a');
+        return '-';
     }
 }
