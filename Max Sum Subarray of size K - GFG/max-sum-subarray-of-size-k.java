@@ -36,17 +36,12 @@ class GFG
 class Solution{
     static long maximumSumSubarray(int k, ArrayList<Integer> arr,int n){
         long maxSum = Integer.MIN_VALUE, sum = 0;
-         for(int i = 0, j = 0; j < n;) {
-             while(j < k) {
-                 sum += arr.get(j++);
-             }
-             maxSum = Math.max(maxSum, sum);
-             if(j < n) {
+         for(int i = 0, j = 0; j < n; j++) {
+             sum += arr.get(j);
+             if(j - i + 1 == k) {
+                 maxSum = Math.max(maxSum, sum);
+                 sum -= arr.get(i);
                  i++;
-                 if(j - i + 1 == k) 
-                     sum = sum + arr.get(j++) - arr.get(i - 1);
-    
-                maxSum = Math.max(maxSum, sum);
              }
          }
          
