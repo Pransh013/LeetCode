@@ -47,15 +47,19 @@ class Compute {
     
     public long[] printFirstNegativeInteger(long arr[], int n, int k) {
         long[] ans = new long[n - k + 1];
-        
-        for(int i = 0; i < n - k + 1; i++) {
-            int j = i;
-            while(j < i + k) {
-                if(arr[j] < 0) {
-                    ans[i] = arr[j];
-                    break;
+        List<Integer> al = new ArrayList<>();
+        for(int i = 0, j = 0; j < n; j++) {
+            if(arr[j] < 0) {
+                al.add(j);
+            }
+            if(j - i + 1 == k) {
+                if(al.size() > 0 && al.get(0) < i) al.remove(0);
+                if(al.size() > 0) {
+                    ans[i] = arr[al.get(0)];
+                } else {
+                    ans[i] = 0;
                 }
-                j++;
+                i++;
             }
         }
         return ans;
