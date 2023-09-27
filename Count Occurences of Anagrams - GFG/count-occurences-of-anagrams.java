@@ -31,14 +31,12 @@ class Solution {
         int k = pat.length();
         int n = txt.length();
         
-        int patSum = 0, currSum = 0, cnt = 0;;
+        int cnt = 0;;
         int[] patMap = new int[26];
         int[] txtMap = new int[26];
         
         for(int i = 0; i < k; i++) {
-            patSum += pat.charAt(i);
             patMap[pat.charAt(i) - 'a']++;
-            currSum += txt.charAt(i);
             txtMap[txt.charAt(i) - 'a']++;
         }
         
@@ -50,17 +48,14 @@ class Solution {
         if(!flag) cnt++;
         
         for(int i = 0, j = k; j < n; j++) {
-            currSum = currSum + txt.charAt(j) - txt.charAt(i);
             txtMap[txt.charAt(j) - 'a']++;
             txtMap[txt.charAt(i) - 'a']--;
-            if(currSum == patSum) {
-                flag = false;
-                for(int a = 0; a < 26; a++) {
-                    if(patMap[a] != txtMap[a])
-                        flag = true;
-                }
-                if(!flag) cnt++;
+            flag = false;
+            for(int a = 0; a < 26; a++) {
+                if(patMap[a] != txtMap[a])
+                    flag = true;
             }
+            if(!flag) cnt++;
             i++;
         }
         return cnt;
