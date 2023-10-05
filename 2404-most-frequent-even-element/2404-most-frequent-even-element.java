@@ -1,21 +1,14 @@
 class Solution {
     public int mostFrequentEven(int[] nums) {
-        int prev = -1, num = -1;
+        HashMap<Integer, Integer> map = new HashMap<>();
         for(int i : nums) {
-            if((i & 1) == 0) {
-                int cnt = 0;
-                for(int j : nums) {
-                    if(j == i) cnt++;
-                }
-                if(cnt > prev) {
-                    num = i;
-                    prev = cnt;
-                }
-                else if(cnt == prev && i < num) {
-                    num = i;
-                    prev = cnt;
-                }
-            }
+            if((i & 1) == 0)
+                map.put(i, map.getOrDefault(i, 0) + 1);
+        }
+        int num = -1;
+        for(int key : map.keySet()) {
+            if(map.get(key) > map.getOrDefault(num, 0)) num = key;
+            else if(map.get(key) == map.get(num) && num > key) num = key;
         }
         return num;
     }
