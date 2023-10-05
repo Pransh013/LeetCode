@@ -49,14 +49,15 @@ class Solution {
         return max;
     }
     public static boolean canPlaceCows(int[] arr, int mid, int k) {
-        int prev = arr[0], noc = 1;
+        int prev = arr[0];
         
         for(int val : arr) {
             if(val - prev >= mid) {
-                noc++;
+                k--;
                 prev = val;
             }
+            if(k == 1) break;
         }
-        return noc >= k;
+        return k == 1;
     }
 }
