@@ -4,16 +4,16 @@ class Solution {
         int n = arr.length;
         int cnt1 = 0, cnt2 = 0, num1 = Integer.MAX_VALUE, num2 = Integer.MAX_VALUE;
         for(int val : arr) {
-            if(cnt1 == 0 && val != num2) {
+            if(val == num1) cnt1++;
+            else if(val == num2)cnt2++;
+            else if(cnt1 == 0) {
                 num1 = val;
                 cnt1 = 1;
             }   
-            else if(cnt2 == 0 && val != num1) {
+            else if(cnt2 == 0) {
                 num2 = val;
                 cnt2 = 1;
             }
-            else if(val == num1) cnt1++;
-            else if(val == num2)cnt2++;
             else {
                 cnt1--; cnt2--;
             }
