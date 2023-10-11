@@ -1,27 +1,30 @@
 class Solution {
-    public int[] topKFrequent(int[] nums, int k) {
-        int n = nums.length;
-        HashMap<Integer, Integer> map = new HashMap<>();
-        ArrayList<Integer>[] bucket = new ArrayList[n + 1];
-        
-        for(int num : nums) map.put(num, map.getOrDefault(num, 0) + 1);
-        for(int i = 0; i <= n; i++) bucket[i] = new ArrayList<>();
-        
-        for(int key : map.keySet()) {
-            bucket[map.get(key)].add(key);
+    public int[] topKFrequent(int[] arr, int k) {
+        HashMap<Integer, Integer> hm = new HashMap<>();
+        int n = arr.length;
+        for(int i=0; i<n; i++) {
+            if(hm.containsKey(arr[i])) {
+                int of = hm.get(arr[i]);
+                hm.put(arr[i], of + 1);
+            } else hm.put(arr[i], 1);
         }
-        int[] result = new int[k];
-        int idx = 0;
         
-        for(int i = n; i >= 0; i--) {
-            if(bucket[i].isEmpty()) continue;
-            else
-                for(int val : bucket[i]) {
-                    if(idx < k)
-                        result[idx++] = (val);
+        int[] res = new int[k];
+        int ans = 0, a = 0;
+        while(k > 0) {
+            int max = 0;
+            for(int i=n-1; i>=0; i--) {
+                if(hm.containsKey(arr[i]) && hm.get(arr[i]) > 0) {
+                    if(hm.get(arr[i]) > max) {
+                        max = hm.get(arr[i]);
+                        ans = arr[i];
+                    }
                 }
-            if(idx >= k) break;
-        } 
-        return result;
+            }
+            res[a++] = ans;
+            hm.put(ans, 0);
+            k--;
+        }
+        return res;
     }
 }
