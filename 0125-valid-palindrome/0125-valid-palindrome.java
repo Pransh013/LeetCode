@@ -1,36 +1,22 @@
 class Solution {
     public boolean isPalindrome(String str) {
-        
-        if (str.isEmpty()) {
-            return true;
-        }
-
+        if(str.isEmpty()) return true;
         str = str.toLowerCase();
-        StringBuilder sb = new StringBuilder();
-        for(int i=0; i<str.length(); i++) {
-            char ch = str.charAt(i);
-            if(isAlphaNumeric(ch)) sb.append(ch);
-        }
         
-        str = sb.toString();
-        
-        int i = 0;
-        int j = str.length() - 1;
-        while (i < j) {
-            char chL = str.charAt(i);
-            char chR = str.charAt(j);
-            if (chL != chR) {
-                return false;
-            }
-            i++;
-            j--;
+        int i = 0, j = str.length() - 1;
+        while(i <= j) {
+            char s = str.charAt(i);
+            char p = str.charAt(j);
+            
+            if(!Character.isLetterOrDigit(s)) i++;
+            
+            else if(!Character.isLetterOrDigit(p)) j--;
+            
+            else if(s == p) {
+                i++;
+                j--;
+            } else return false;
         }
-
         return true;
-    }
-    public boolean isAlphaNumeric(char ch) {
-        if(ch >= 'a' && ch <= 'z') return true;
-        if(ch >= '0' && ch <= '9') return true;
-        return false;
     }
 }
