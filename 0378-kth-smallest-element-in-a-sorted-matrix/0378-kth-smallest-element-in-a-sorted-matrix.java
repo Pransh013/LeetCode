@@ -1,14 +1,11 @@
 class Solution {
     public int kthSmallest(int[][] matrix, int k) {
-        int n = matrix.length;
-        
-        int[] a = new int[n * n];
-        int idx = 0;
+        Queue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
         for(int[] rows : matrix) 
-            for(int val : rows)
-                a[idx++] = val;
-        
-        Arrays.sort(a);
-        return a[k - 1];
+            for(int val : rows) {
+                pq.add(val);
+                if(pq.size() > k) pq.remove();
+            }   
+        return pq.remove();
     }
 }
