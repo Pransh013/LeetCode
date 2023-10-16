@@ -39,6 +39,6 @@ class Reverse
             ch[i++] = ch[j];
             ch[j--] = temp;
         }
-        return new String(ch);
+        return String.valueOf(ch);
     }
 }
