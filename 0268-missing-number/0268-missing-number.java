@@ -1,10 +1,22 @@
 class Solution {
     public int missingNumber(int[] nums) {
         int n = nums.length;
-        int xor = 0;
-        for(int i = 0; i < n; i++) {
-            xor = xor ^ nums[i] ^ (i + 1);
+        
+//      Cyclic Sort
+        for(int i = 0; i < n;) {
+            if(nums[i] < n && nums[i] != nums[nums[i]]) swap(nums, i, nums[i]);
+            else i++;
         }
-        return xor;
+        
+        for(int i = 0; i < n; i++)
+            if(nums[i] != i) return i;
+        
+        return n;
+    }
+    
+    private void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
     }
 }
