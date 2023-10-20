@@ -1,25 +1,19 @@
 class Solution {
     public int countBinarySubstrings(String s) {
-        
-        int n = s.length();
-        
-        int[] arr = new int[n];
-        int cnt = 1, bt = 0;
-        for(int i=1; i<n; i++) {
-            if(s.charAt(i) == s.charAt(i-1)) {
-                cnt++;
+        int count = 0;
+        int consecutiveCount = 1;
+        int lastConsecutiveCount = 0;
+
+        for(int i = 1; i < s.length(); i++) {
+            if(s.charAt(i) != s.charAt(i - 1)) {
+                lastConsecutiveCount = consecutiveCount;
+                consecutiveCount = 1;
+                count++;
             } else {
-                arr[bt++] = cnt;
-                cnt = 1;
+                consecutiveCount++;
+                if(consecutiveCount <= lastConsecutiveCount) count++;
             }
         }
-        
-        arr[bt] = cnt;
-        
-        int sum = 0;
-        for(int i=1; i<=bt; i++) {
-            sum += Math.min(arr[i], arr[i-1]);
-        }
-        return sum;
+        return count;
     }
 }
