@@ -3,17 +3,17 @@ class Solution {
         int n = nums.length;
         int[] ans = new int[n];
         
-        int i = 0, j = 0;
+        int i = 0, j = (n - 1), k = 0;
         
-        for(int val : nums) {
-            if(val == 0) i++;
-            else if(val == 1) j++;
+        while(k <= j) {
+            if(nums[k] == 0) swap(nums, i++, k++);
+            else if(nums[k] == 2) swap(nums, k, j--);
+            else k++;
         }
-        
-        for(int idx = 0; idx < n; idx++) {
-            if(idx < i) nums[idx] = 0;
-            else if(idx < i + j) nums[idx] = 1;
-            else nums[idx] = 2;
-        }
+    }
+    private void swap(int[] a, int i, int j) {
+        int temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
     }
 }
