@@ -8,7 +8,6 @@ class Solution {
         for (int i = 2; i < n; i++) {
             dp[i] = Math.min(dp[i - 1], a[i - 1]);
         }
-        System.out.println(Arrays.toString(dp));
         int max = Integer.MIN_VALUE;
         for (int i = 1; i < n; i++)
             max = Math.max(max, a[i] - dp[i]);
