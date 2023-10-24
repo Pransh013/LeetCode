@@ -5,8 +5,9 @@ class Solution {
         int sell = 0;
         
         for(int i = 1; i < n; i++) {
+            int temp = buy;
             if(sell - a[i] > buy) buy = sell - a[i];
-            if(a[i] + buy - fee > sell) sell = a[i] + buy - fee;
+            if(a[i] + temp - fee > sell) sell = a[i] + temp - fee;
         }
         return sell;
     }
