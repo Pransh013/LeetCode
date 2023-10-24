@@ -3,11 +3,20 @@ class Solution {
         int n = a.length, m = a[0].length;
         int[][] b= new int[n][m];
         
+        boolean[] rows = new boolean[n];
+        boolean[] cols = new boolean[m];
+        
         for(int r = 0; r < n; r++) {
             for(int c = 0; c < m; c++) {
                 if(a[r][c] == 0) {
-                    fillRow(b, r);
-                    fillCol(b, c);
+                    if(!rows[r]) {
+                        fillRow(b, r);
+                        rows[r] = true;
+                    }
+                    if(!cols[c]) {
+                        fillCol(b, c);
+                        cols[c] = true;
+                    }
                 }
             }
         }
