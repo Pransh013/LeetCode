@@ -1,39 +1,29 @@
 class Solution {
     public void setZeroes(int[][] a) {
         int n = a.length, m = a[0].length;
-        int[][] b= new int[n][m];
         
-        boolean[] rows = new boolean[n];
-        boolean[] cols = new boolean[m];
-        
+        int col = 1;
         for(int r = 0; r < n; r++) {
             for(int c = 0; c < m; c++) {
                 if(a[r][c] == 0) {
-                    if(!rows[r]) {
-                        fillRow(b, r);
-                        rows[r] = true;
-                    }
-                    if(!cols[c]) {
-                        fillCol(b, c);
-                        cols[c] = true;
+                    if(c == 0) col = 0;
+                    else {
+                        a[r][0] = 0;
+                        a[0][c] = 0;
                     }
                 }
             }
         }
-        for(int r = 0; r < n; r++) {
-            for(int c = 0; c < m; c++) {
-                if(b[r][c] == 1) {
-                    a[r][c] = 0;
-                }
+        for(int r = n - 1; r > 0; r--) {
+            for(int c = m - 1; c > 0; c--) {
+                if(a[r][0] == 0 || a[0][c] == 0) a[r][c] = 0;
             }
         }
-    }
-    
-    private void fillRow(int[][] a, int r) {
-        for(int c = 0; c < a[0].length; c++) a[r][c] = 1;
-    }
-    
-    private void fillCol(int[][] a, int c) {
-        for(int r = 0; r < a.length; r++) a[r][c] = 1;
+        if(a[0][0] == 0) {
+            for(int c = 1; c < m; c++) a[0][c] = 0;
+        }
+        if(col == 0) {
+            for(int r = 0; r < n; r++) a[r][0] = 0;
+        }
     }
 }
