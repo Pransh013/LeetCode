@@ -14,19 +14,8 @@ class Solution {
             }
         }
         
-        for(int i = 0; i < n; i++) {
-            if(rows[i]) fillRow(a, i);
-        }
-        for(int i = 0; i < m; i++) {
-            if(cols[i]) fillCol(a, i);
-        }
-    }
-    
-    private void fillRow(int[][] a, int r) {
-        for(int c = 0; c < a[0].length; c++) a[r][c] = 0;
-    }
-    
-    private void fillCol(int[][] a, int c) {
-        for(int r = 0; r < a.length; r++) a[r][c] = 0;
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < m; j++)
+                if(rows[i] || cols[j]) a[i][j] = 0;
     }
 }
