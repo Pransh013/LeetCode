@@ -1,41 +1,37 @@
 class Solution {
-    public List<Integer> spiralOrder(int[][] arr) {
+    public List<Integer> spiralOrder(int[][] a) {
+        int n = a.length;
+        int m = a[0].length;
         
-        List<Integer> al = new ArrayList<>();
+        List<Integer> list = new ArrayList<>();
         
-        int n = arr.length, m = arr[0].length;
-        int minRow = 0, maxRow = n-1, minCol = 0, maxCol = m-1, cnt = 0; 
+        int tb = 0, bb = n - 1, lb = 0, rb = m - 1, tne = n * m;
         
-        while(cnt < n*m) {
+        while(tne > 0) {
+            for(int r = tb, c = lb; c <= rb && tne > 0; c++) {
+                list.add(a[r][c]);
+                tne--;
+            }
+            tb++;
             
-    //         Upper Wall
-            for(int r=minRow, c=minCol; c<=maxCol && cnt < n*m; c++) {
-                al.add(arr[r][c]);
-                cnt++;
+            for(int c = rb, r = tb; r <= bb && tne > 0; r++) {
+                list.add(a[r][c]);
+                tne--;
             }
-            minRow++;
-
-    //         Right Wall
-            for(int r=minRow, c=maxCol; r<=maxRow && cnt < n*m; r++) {
-                al.add(arr[r][c]);
-                cnt++;
+            rb--;
+            
+            for(int r = bb, c = rb; c >= lb && tne > 0; c--) {
+                list.add(a[r][c]);
+                tne--;
             }
-            maxCol--;
-
-    //         Bottom Wall
-            for(int r=maxRow, c=maxCol; c>=minCol && cnt < n*m; c--) {
-                al.add(arr[r][c]);
-                cnt++;
+            bb--;
+            
+            for(int c = lb, r = bb; r >= tb && tne > 0; r--) {
+                list.add(a[r][c]);
+                tne--;
             }
-            maxRow--;
-
-    //         Left Wall
-            for(int r=maxRow, c=minCol; r>=minRow && cnt < n*m; r--) {
-                al.add(arr[r][c]);
-                cnt++;
-            }
-            minCol++;
+            lb++;
         }
-        return al;
+        return list;
     }
 }
