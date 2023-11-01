@@ -1,35 +1,31 @@
 class Solution {
     public int[][] generateMatrix(int n) {
-        int[][] arr = new int[n][n];
         
-        int minRow = 0, maxRow = n-1, minCol = 0, maxCol = n-1, cnt = 1; 
+        int[][] a = new int[n][n];
         
-        while(cnt <= n*n) {
+        int tb = 0, bb = n - 1, lb = 0, rb = n - 1, num = 1;
+        
+        while(num <= n * n) {
+            for(int r = tb, c = lb; c <= rb && num <= n * n; c++) {
+                a[r][c] = num++;
+            }
+            tb++;
             
-    //         Upper Wall
-            for(int r=minRow, c=minCol; c<=maxCol && cnt <= n*n; c++) {
-                arr[r][c] = cnt++;
+            for(int c = rb, r = tb; r <= bb && num <= n * n; r++) {
+                a[r][c] = num++;
             }
-            minRow++;
-
-    //         Right Wall
-            for(int r=minRow, c=maxCol; r<=maxRow && cnt <= n*n; r++) {
-                arr[r][c] = cnt++;
+            rb--;
+            
+            for(int r = bb, c = rb; c >= lb && num <= n * n; c--) {
+                a[r][c] = num++;
             }
-            maxCol--;
-
-    //         Bottom Wall
-            for(int r=maxRow, c=maxCol; c>=minCol && cnt <= n*n; c--) {
-                arr[r][c] = cnt++;
+            bb--;
+            
+            for(int c = lb, r = bb; r >= tb && num <= n * n; r--) {
+                a[r][c] = num++;
             }
-            maxRow--;
-
-    //         Left Wall
-            for(int r=maxRow, c=minCol; r>=minRow && cnt <= n*n; r--) {
-                arr[r][c] = cnt++;
-            }
-            minCol++;
+            lb++;
         }
-        return arr;
+        return a;
     }
 }
