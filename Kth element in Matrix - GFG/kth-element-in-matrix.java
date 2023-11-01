@@ -33,20 +33,15 @@ class Solution
 {
 	public static int kthSmallest(int[][]mat,int n,int k)
 	{
-        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
         for(int[] row : mat) {
             for(int val : row) {
                 pq.add(val);
+                
+                if(pq.size() > k) pq.poll();
             }
         }
         
-        int ans = 0;
-        while(k > 0) {
-            ans = pq.poll();
-            k--;
-        }
-        return ans;
+        return pq.poll();
     }
 }
-
-
