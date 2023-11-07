@@ -1,23 +1,27 @@
 class SeatManager {
     int marker;
-    PriorityQueue<Integer> seats;
+
+    TreeSet<Integer> availableSeats;
+
     public SeatManager(int n) {
         marker = 1;
-        seats = new PriorityQueue<>();
+        availableSeats = new TreeSet<>();
     }
-    
+
     public int reserve() {
-        if(!seats.isEmpty()) {
-            return seats.poll();
+        if (!availableSeats.isEmpty()) {
+            int seatNumber = availableSeats.first();
+            availableSeats.remove(seatNumber);
+            return seatNumber;
         }
-        
-        int seat = marker;
+
+        int seatNumber = marker;
         marker++;
-        return seat;
+        return seatNumber;
     }
-    
+
     public void unreserve(int seatNumber) {
-        seats.add(seatNumber);
+        availableSeats.add(seatNumber);
     }
 }
 
