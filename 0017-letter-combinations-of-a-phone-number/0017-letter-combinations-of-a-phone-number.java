@@ -1,5 +1,5 @@
 class Solution {
-    String[] codes = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+    static String[] codes = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
     public List<String> letterCombinations(String digits) {
         if(digits.length() == 0) return new ArrayList<>();
         return getAns(digits);
