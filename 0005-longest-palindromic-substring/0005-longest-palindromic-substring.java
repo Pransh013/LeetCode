@@ -1,25 +1,40 @@
 class Solution {
     public String longestPalindrome(String s) {
-        int n = s.length();
         String sb = "";
-        int maxLen = 0;
-        for(int i = 0; i < n; i++) {
-            for(int j = i + 1; j <= n; j++) {
-                String ss = s.substring(i, j);
-                if(ss.length() > maxLen && isPalindrome(ss)) {
-                    sb = ss;
-                    maxLen = sb.length();
-                } 
+       
+        // odd length
+        for(int ax = 0; ax < s.length(); ax++) {
+            int d = 1, len = 1;
+            
+            while(ax - d >= 0 && ax + d < s.length()) {
+                if(s.charAt(ax - d) == s.charAt(ax + d)) {
+                    len += 2;
+                    d++;
+                } else break;
+            }
+            
+            if(len > sb.length()) {
+                int x = ax - len / 2;
+                sb = s.substring(x, x + len);
             }
         }
-        return sb.toString();
-    }
-    
-    private boolean isPalindrome(String s) {
-        int i = 0, j = s.length() - 1;
-        while(i < j) {
-            if(s.charAt(i++) != s.charAt(j--)) return false;
+        
+        // even length
+        for(int ax = 0; ax < s.length() - 1; ax++) {
+            int d = 1, len = 0;
+            
+            while(ax - d + 1 >= 0 && ax + d < s.length()) {
+                if(s.charAt(ax - d + 1) == s.charAt(ax + d)) {
+                    len += 2;
+                    d++;
+                } else break;
+            }
+            
+            if(len > sb.length()) {
+                int x = ax - len / 2 + 1;
+                sb = s.substring(x, x + len);
+            }
         }
-        return true;
+        return sb;
     }    
 }
