@@ -5,13 +5,11 @@ class Solution {
         
         while(i < j) {
             if(isVowel(temp[i]) && isVowel(temp[j])) {
-                swap(temp, i++, j--);
-            } else if(isVowel(temp[i])) j--;
-            else if(isVowel(temp[j])) i++;
-            else {
-                i++;
-                j--;
-            }
+                swap(temp, i, j);
+            } else if(isVowel(temp[i])) i--;
+            else if(isVowel(temp[j])) j++;
+            i++;
+            j--;
         }
         return new String(temp);
     }
