@@ -3,16 +3,13 @@ class Solution {
         
         if(strs.length == 1) return strs[0];
         
-        String ans = "";
-        int i = 0;
-        while(i < strs[0].length()) {
-            char ch = strs[0].charAt(i);
-            
-            for(int j = 1; j < strs.length; j++) {
-                if(i == strs[j].length() || ch != strs[j].charAt(i)) return strs[0].substring(0, i);
+        String ans = strs[0];
+        
+        for(int i = 1; i < strs.length; i++) {
+            while(strs[i].indexOf(ans) != 0) {
+                ans = ans.substring(0, ans.length() - 1);
             }
-            i++;
-        }
-        return strs[0].substring(0, i);
+        } 
+        return ans;
     }
 }
