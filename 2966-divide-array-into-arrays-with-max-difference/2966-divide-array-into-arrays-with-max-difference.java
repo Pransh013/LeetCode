@@ -5,13 +5,12 @@ class Solution {
         
         Arrays.sort(nums);
         
-        int idx = 0;
-        for(int i = 0; i < n / 3; i++) {
-            for(int j = 0; j < 3; j++) {
-                a[i][j] = nums[idx++];
-            }
+        for(int i = 2; i < n; i += 3) {
+            if(nums[i] - nums[i - 2] > k) return new int[0][0];
             
-            if(a[i][2] - a[i][0] > k) return new int[0][0];
+            a[i / 3][0] = nums[i - 2];
+            a[i / 3][1] = nums[i - 1];
+            a[i / 3][2] = nums[i];
         }
         return a;
     }
