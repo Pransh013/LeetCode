@@ -5,8 +5,9 @@ class Solution {
             if(arr[i] == 0) {
                 int j = i + 1;
                 while(j < arr.length && arr[j] == 0) j++;
-                if(j < arr.length)
-                    swap(arr, i, j);
+                
+                if(j < arr.length) swap(arr, i, j);
+                if(j == arr.length - 1) break;
             }
         }
     }
