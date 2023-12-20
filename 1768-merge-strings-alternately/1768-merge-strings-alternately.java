@@ -5,21 +5,13 @@ class Solution {
         int i = 0, j = 0;
         
         while(i < w1.length() && j < w2.length()) {
-            sb.append(w1.charAt(i));
-            i++;
-            sb.append(w2.charAt(j));
-            j++;
+            sb.append(w1.charAt(i++));
+            sb.append(w2.charAt(j++));
         }
         
-        while(i < w1.length()) {
-            sb.append(w1.charAt(i));
-            i++;
-        }
+        sb.append(w1.substring(i, w1.length()));
         
-        while(j < w2.length()) {
-            sb.append(w2.charAt(j));
-            j++;
-        }
+        sb.append(w2.substring(j, w2.length()));
         
         return sb.toString();
     }
