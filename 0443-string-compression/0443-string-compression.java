@@ -1,7 +1,8 @@
 class Solution {
     public int compress(char[] arr) {
         if(arr.length == 1) return arr.length;
-        StringBuilder sb = new StringBuilder("" + arr[0]);
+        StringBuilder sb = new StringBuilder();
+        sb.append(arr[0]);
         int cnt = 1;
         for(int i = 1; i < arr.length; i++) {
             if(arr[i] == arr[i - 1]) cnt++;
