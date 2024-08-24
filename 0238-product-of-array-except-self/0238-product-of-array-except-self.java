@@ -1,24 +1,24 @@
 class Solution {
-    public int[] productExceptSelf(int[] nums) {
-        int cnt = 0, prd = 1;
-        for(int val : nums) {
-            if(val == 0) cnt++;
-            else prd *= val;
+    public int[] productExceptSelf(int[] arr) {
+        int pro = 1;
+        int zeroCnt = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if(arr[i] == 0) zeroCnt++;
+            else pro *= arr[i];
         }
         
-        if(cnt > 1) return new int[nums.length];
+        int[] ans = new int[arr.length];
         
-        if(cnt == 1) {
-            for(int i = 0; i < nums.length; i++) {
-                if(nums[i] == 0) nums[i] = prd;
-                else nums[i] = 0;
+        if(zeroCnt == 0) {
+            for(int i = 0; i < arr.length; i++) {
+                ans[i] = pro / arr[i];
+            } 
+        } else if(zeroCnt == 1) {
+            for(int i = 0; i < arr.length; i++) {
+                if(arr[i] != 0) ans[i] = 0;
+                else ans[i] = pro;
             }
-            return nums;
         }
-        
-        for(int i = 0; i < nums.length; i++) {
-            nums[i] = prd / nums[i];
-        }
-        return nums;
+        return ans;
     }
 }
