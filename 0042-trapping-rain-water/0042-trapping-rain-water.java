@@ -1,34 +1,36 @@
 class Solution {
-    public int trap(int[] height) {
-        int n = height.length, sum = 0;
-        int[] left = leftGreater(height, n);
-        int[] right = rightGreater(height, n);
+    public int trap(int[] arr) {
+        int[] leftGreater = findLeftGreater(arr);
+        int[] rightGreater = findRightGreater(arr);
         
-        for(int i = 0; i < n; i++) {
-            int ans = Math.min(left[i], right[i]) - height[i];
-            if(ans > 0)  sum += ans;
+        int ans = 0;
+        
+        for(int i = 0; i < arr.length; i++) {
+            int water = Math.min(leftGreater[i], rightGreater[i]) - arr[i];
+            if(water > 0) ans += water;
         }
-        return sum;
-    }
-    public int[] leftGreater(int[] arr, int n) {
-        int[] left = new int[n];
-        int val = 0;
-        for(int i = 0; i < n; i++) {
-            left[i] = val;
-            if(arr[i] > val)
-                val = arr[i];
-        }
-        return left;
+        return ans;
     }
     
-    public int[] rightGreater(int[] arr, int n) {
-        int[] right = new int[n];
+    public static int[] findLeftGreater(int[] arr) {
         int val = 0;
-        for(int i = n - 1; i >= 0; i--) {
-            right[i] = val;
-            if(arr[i] > val)
-                val = arr[i];
+        int[] leftGreater = new int[arr.length];
+        
+        for(int i = 0; i < arr.length; i++) {
+            leftGreater[i] = val;
+            if(arr[i] > val) val = arr[i];
         }
-        return right;
+        return leftGreater;
+    }
+    
+    public static int[] findRightGreater(int[] arr) {
+        int val = 0;
+        int[] rightGreater = new int[arr.length];
+        
+        for(int i = arr.length - 1; i >= 0; i--) {
+            rightGreater[i] = val;
+            if(arr[i] > val) val = arr[i];
+        }
+        return rightGreater;
     }
 }
